@@ -1,0 +1,10 @@
+[redis-server]
+redis-server1 192.168.60.4
+redis-server2 192.168.60.4
+redis-server3 192.168.60.4
+
+[rabbitmq-server]
+rabbitmq-server 192.168.60.5
+
+[mysql-server]
+mysql-server 192.168.60.6

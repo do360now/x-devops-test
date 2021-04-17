@@ -1,0 +1,9 @@
+###############################################
+# VARIABLES FOR THE RabbitMQ CLUSTER
+###############################################
+app_name: "rabbitmq"
+image_name: "rabbitmq"
+image_version: 3
+port_number: 5672
+docker_network_name: "rabbitmq"
+docker_container_name: "{{ app_name }}"

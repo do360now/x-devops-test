@@ -1,0 +1,34 @@
+###############################################
+# VARIABLES FOR ALL THE CLUSTERS    
+###############################################
+
+
+
+# ############################################################
+# Variable list to start containers and get Docker Images     
+# ############################################################
+
+docker_user_deploy: docker
+
+docker_container_user: "{{ docker_user_deploy }}"
+
+docker_policy_start: always
+
+docker_host_shared_path: "{{ docker_container_root }}/{{ path_env_var }}/{{ docker_service_name }}"
+
+docker_container_mapped_port: []
+docker_container_map_directories: []
+config_file_map_directories: []
+
+
+#######################################################
+# Variables BDD
+#######################################################
+
+easy_database_host: "pabdmr1d01.cmjvboy0ejg6.eu-west-3.rds.amazonaws.com"
+easy_database_port: 5433
+easy_database_name: "bmr1001"
+
+easy_database_owner: "u_bmr1001_owner"
+easy_database_owner_pwd: "{{vault_easy_database_owner_pwd }}"  # Variable dans le fichier vault
+

@@ -1,0 +1,50 @@
+---
+
+###########################################################
+# Kernel, system version, and operating system test #
+###########################################################
+
+- name: Getting kernel version
+  debug:
+    msg: "{{ ansible_kernel[:3] }}" 
+
+- name: Verification that the kernel version is >=3.10
+  fail:
+    msg="The kernel version must be at least 3.10"
+  when: ansible_kernel[:3] < "3.10"
+
+- name: Checking the installation of the docker package
+  shell: "dpkg -l | grep docker.*"
+  register: package_docker
+  failed_when: package_docker.rc == 1
+
+- name: Docker directory check
+  stat:
+    path: "{{ item }}"
+  register: check_dir_require_result
+  loop: "{{ docker_dir_require }}"
+
+###############################################################
+# Playbook verification of available disk space on the host   #
+###############################################################
+
+- name: Definition fact 'mount'
+  set_fact:
+    mount: "{{ ansible_mounts | selectattr('mount')|list}}"
+  
+- name: Partition recovery available on the application server
+  set_fact:
+    all_partition: "{{ mount | map(attribute='mount') | list }}"
+
+
+- name: Recovering available disk space on the application server
+  set_fact:
+    size_available: "{{ mount | map(attribute='size_available') | list }}"
+
+  
+- name: Recovering the total disk space of the application server
+  set_fact:
+    full_size: "{{ mount | map(attribute='size_total')| list }}"
+
+    
+

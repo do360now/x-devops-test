@@ -1,0 +1,19 @@
+---
+- name: Redis cluster 
+  hosts: all
+  become: yes
+  roles:
+    - redis-docker-deploy
+
+# - name: RabbitMQ cluster
+#   hosts: rabbitmq-server
+  
+#   roles:
+#     - rabbitmq-server-deploy
+
+# - name: MySQL cluster 
+#   hosts: mysql-server
+#   roles:
+#     - mysql-server-deploy
+    
+ 

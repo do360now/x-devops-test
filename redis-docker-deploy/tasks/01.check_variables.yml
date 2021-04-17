@@ -1,0 +1,12 @@
+---
+  
+- name: "Mandatory variable checking"
+  fail: msg="'{{ item }}' doit etre definie"
+  when: "
+    (vars[item] is undefined)
+       or
+    (vars[item] is none)
+       or
+    (vars[item] | trim == '')
+    "
+  loop: "{{ docker_required_vars | default([]) }}"

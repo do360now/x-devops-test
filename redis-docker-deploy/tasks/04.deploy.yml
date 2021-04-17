@@ -1,0 +1,61 @@
+---
+
+####################################################
+# Deployment of the container with the new version #
+# ##################################################
+
+- name: Creation of the docker network
+  docker_network:
+    name: "{{ docker_network_name }}"
+
+- name: Stop all containers of the same name {{ docker_container_name }}
+  docker_container:
+    state: absent
+    name: "{{ docker_container_name }}"
+  
+- name: "Create all source directories on host"
+  file:
+    path: "{{ item.dir_src }}"
+    mode: "0775"
+    state: "directory"
+    owner: "docker"
+    group: "docker"
+  become: true
+  become_user: "docker"
+  with_items: 
+    - "{{ docker_container_map_directories }}"
+  ignore_errors: yes
+
+- name: Prepare to create dynamic list for application host
+  set_fact: 
+     mapping_item: "{{ item.dir_src }}:{{ item.dir_shared }}"
+  with_items: 
+  - "{{ docker_container_map_directories }}"
+  register: mapping_result
+  
+- name: Create dynamic list for application in host  
+  set_fact: 
+     docker_mapping_dir: "{{ mapping_result.results | map(attribute='ansible_facts.mapping_item') | list }}"
+
+- debug: var=docker_mapping_dir
+ 
+- name: Start of the container {{ docker_container_name }} 
+  docker_container:
+    state: started
+    name: "{{ docker_container_name }}"
+    image: "{{ docker_image_name }}:{{ docker_image_version }}"
+    user: "{{ docker_container_user }}"
+    command: "{{ docker_command }}"
+    networks:
+      - name: "{{ docker_network_name }}"
+    network_mode:   "{{ docker_network_mode | default(bridge) }}"
+    purge_networks: yes
+    published_ports: "{{ docker_container_mapped_port | default(omit) }}"
+    
+    
+- name: Upload config files
+  include_tasks: "common/config.yml"
+  loop: "{{docker_container_config_files}}"
+  loop_control:
+    loop_var: config_file
+  when: not 'rabbitmq' in hostvars['groups']
