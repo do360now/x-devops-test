@@ -8,9 +8,7 @@
 - name: verify variables set 
   include_tasks: "01.check_variables.yml"
   
-- name: Verify requiremnts is done 
-  include_tasks: "02.requirements.yml"
-  when: docker_action_require == true
+
 
 - name: Deploy and start the containers with new version
   include_tasks: "04.deploy.yml"

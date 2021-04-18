@@ -1,11 +1,13 @@
+---
+
 - name: "Re-create a {{ app-name }} container"
   docker_container:
-    name: myredis
-    image: redis
+    name: redism1
+    image: redis:alpine
     command: redis-server --appendonly yes
     state: present
     recreate: yes
     exposed_ports:
       - 6379
-    volumes_from:
-      - mydata
+    volumes:
+      - ./volumes/redis1/conf:/home/redis/conf

@@ -17,10 +17,10 @@ docker_volume_name: "{{ docker_container_name }}"
 
 # shared directory path on the host
 docker_host_shared_path: "{{ docker_container_root }}/{{ path_env_var }}/{{ docker_service_name }}"
-
+# /vagrant/ansible/conf:/home/redis/cluster-test
 docker_container_directory: "/var/easy/app/config"
-docker_container_root: "/home/docker/vol"
-docker_home_dir: "/home/docker"
+docker_container_root: "/home/vagrant/vol"
+docker_home_dir: "/home/vagrant"
 
 docker_action_require: true
 docker_action_image_version: true
