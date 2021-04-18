@@ -1,0 +1,15 @@
+
+
+docker_container_map_directories:
+- { dir_src: "{{ docker_host_shared_path }}", volume: "{{ docker_volume_name }}", dir_shared: "{{ docker_container_directory }}" }
+- { dir_src: "{{ cluster-test }}" }
+- { dir_src: "{{ cluster-test }}/7000" }
+
+docker_host_shared_path: "{{ docker_shared_dir }}"
+
+# Path where the container data will be persited
+docker_shared_dir: "/vagrant" 
+
+docker_volume_name: "{{ docker_container_name }}"
+
+docker_container_directory: "/data "
