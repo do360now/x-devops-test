@@ -4,18 +4,35 @@
 
 - name: verify hosts is available
   include_tasks: "00.ping_test.yml"
-
-- name: verify variables set 
-  include_tasks: "01.check_variables.yml"
   
 - name: Verify requiremnts is done 
-  include_tasks: "02.requirements.yml"
-  when: docker_action_require == true
+  include_tasks: "01.requirements.yml"
+  
+##############################################
+# Start containers 
+##############################################
 
-- name: Deploy and start the containers with new version
-  include_tasks: "04.deploy.yml"
-  when: docker_action_deploy == true 
+- name: Start Redis Master1
+  include_tasks: "nodes/redisms1.yml"
+  
+- name: Start Redis Master2
+  include_tasks: "nodes/redisms2.yml"
+  
+- name: Start Redis Master3
+  include_tasks: "nodes/redisms3.yml"
+  
+- name: Start Redis Slave1
+  include_tasks: "nodes/rediss1.yml"
+  
+- name: Start Redis Slave2
+  include_tasks: "nodes/rediss2.yml"
 
-- name: Check deployment status
-  include_tasks: "06.check_install.yml"
-  when: docker_action_check == true   
+- name: Start Redis Slave3
+  include_tasks: "nodes/rediss3.yml"
+
+##############################################
+# Start cluster
+##############################################
+
+- name: Start Redis Cluster
+  include_tasks: "03_create_cluster.yml"     

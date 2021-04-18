@@ -2,33 +2,31 @@
 #     Variable list to start containers and get Docker Images      #
 # ################################################################ #
 
-docker_user_deploy: docker
+docker_user_deploy: vagrant
 
 #version: "{{ new_version }}"
-docker_image_version: "{{ new_version | upper }}"
-docker_container_user: sbt000p1
+# docker_image_version: "{{ new_version | upper }}"
+# docker_container_user: sbt000p1
 docker_policy_start: always
 
 #docker_host_path_name: "{{ docker_service_name }}"
-docker_network_name: "{{ env_var }}"
-docker_container_name: "{{ env_var }}-{{ docker_service_name }}"
-docker_volume_name: "{{ docker_container_name }}"
+# docker_network_name: "{{ env_var }}"
+# docker_container_name: "{{ env_var }}-{{ docker_service_name }}"
+# docker_volume_name: "{{ docker_container_name }}"
 
 
 # shared directory path on the host
-docker_host_shared_path: "{{ docker_container_root }}/{{ path_env_var }}/{{ docker_service_name }}"
+# docker_host_shared_path: "{{ docker_container_root }}/{{ path_env_var }}/{{ docker_service_name }}"
 
-docker_container_directory: "/var/easy/app/config"
-docker_container_root: "/home/docker/vol"
-docker_home_dir: "/home/docker"
+# docker_container_directory: "/var/easy/app/config"
+# docker_container_root: "/home/vagrant/vol"
+# docker_home_dir: "/home/vagrant"
 
-docker_action_require: true
-docker_action_image_version: true
-docker_action_deploy: true
-docker_action_rollback: false
-docker_action_check: true
+# docker_action_require: true
+# docker_action_image_version: true
+# docker_action_deploy: true
+# docker_action_check: true
 
-
-templates_applicatifs:
-- { src: BOOT.sh.j2, dest: "{{ docker_container_root }}/{{ docker_container_name }}/scripts/BOOT.sh", mode: "0755" }
-- { src: SHUT.sh.j2, dest: "{{ docker_container_root }}/{{ docker_container_name }}/scripts/SHUT.sh", mode: "0755"  }
+# templates_applicatifs:
+# - { src: BOOT.sh.j2, dest: "{{ docker_container_root }}/{{ docker_container_name }}/scripts/BOOT.sh", mode: "0755" }
+# - { src: SHUT.sh.j2, dest: "{{ docker_container_root }}/{{ docker_container_name }}/scripts/SHUT.sh", mode: "0755"  }

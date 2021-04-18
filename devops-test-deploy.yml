@@ -1,6 +1,8 @@
 ---
-- name: Redis cluster 
-  hosts: all
+- name: DevOps Test Redis Cluster
+  hosts: redisms1
+  serial: 1
+  gather_facts: false
   become: yes
   roles:
     - redis-docker-deploy

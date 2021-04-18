@@ -48,6 +48,9 @@ This Redis Cluster provides a way to run a Redis installation where data is auto
 
 - Navigate to the root `x-devops-test` folder and execute `vagrant box add ubuntu/bionic64`
 - Boot the host VM Server: `vagrant up`
+- Connect to the Ansible master `vagrant ssh ansiblem`
+- Change to the vagrant directory,  `cd /vagrant` and start the Ansible Master setup script `./ansiblem-setup-script.sh`
+
 - Make sure you're in the same directory as the Vagrantfile and devops-test-deploy.yml, and enter `vagrant provision`
 
 You should see status messages for each of the tasks, and then a recap showing what Ansible did to configure the Redis cluster. Something  like the following:

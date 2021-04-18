@@ -3,33 +3,8 @@
 # The declared variables here must not be modified #
 ####################################################
 
-docker_user: "docker"
-docker_group: "docker"
-docker_container_root: /home/docker/vol
-docker_mount_fs:
-  - /home/docker/lib
-docker_dir_require:
-  - /home/docker
-  - /home/docker/vol_shared
-  - /home/docker/vol 
-  - /home/docker/lib
 
 
-# List of mandatory variables that have to be defined 
-docker_required_vars:
-  - docker_image_name
-  - docker_container_name
-  - docker_volume_name
-  - docker_container_directory
-  - docker_container_user
-  - docker_image_version
-  - docker_user_deploy
-  - docker_network_name
-  - docker_policy_start
-  - docker_action_image_version
-  - docker_action_deploy
-  - docker_action_check
-  
 
 
   

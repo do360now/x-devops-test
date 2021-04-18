@@ -1,10 +1,19 @@
-[redis-server]
-redis-server1 192.168.60.4
-redis-server2 192.168.60.4
-redis-server3 192.168.60.4
 
-[rabbitmq-server]
-rabbitmq-server 192.168.60.5
+[redis_master1]
+redisms1 ansible_host=192.168.60.5 ansible_ssh_private_key_file=/home/vagrant/cert/private_key ansible_python_interpreter=/usr/bin/python3
 
-[mysql-server]
-mysql-server 192.168.60.6
+[redis_slave1]
+rediss1 ansible_host=192.168.60.5 ansible_ssh_private_key_file=/home/vagrant/cert/private_key ansible_python_interpreter=/usr/bin/python3
+
+[redis_master2]
+redisms2 ansible_host=192.168.60.5 ansible_ssh_private_key_file=/home/vagrant/cert/private_key ansible_python_interpreter=/usr/bin/python3
+
+[redis_slave2]
+rediss2 ansible_host=192.168.60.5 ansible_ssh_private_key_file=/home/vagrant/cert/private_key ansible_python_interpreter=/usr/bin/python3
+
+[redis_cluster:children]
+redis_master1
+redis_slave1
+redis_master2
+redis_slave2
+
