@@ -53,9 +53,9 @@ Coming soon...
 You should see status messages for each of the tasks, and then a recap showing what Ansible did to configure the Redis, RabbitMQ, and MySQL Nodes for each cluster.  You should see something like the following:
 
 PLAY RECAP *******************************************************************************************************
-rediscluster               : ok=48   changed=25   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0
-mysqlcluster               : ok=25   changed=15    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
-mysqlcluster               : ok=18   changed=7    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+> rediscluster               : ok=48   changed=25   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0
+> mysqlcluster               : ok=25   changed=15    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+> mysqlcluster               : ok=18   changed=7    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
 
 # Check cluster
 - Open a new Windows Powershell window and use the `vagrant ssh testvm` to connect to the test VM running the docker container nodes.
