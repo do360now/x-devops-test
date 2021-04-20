@@ -1,7 +1,0 @@
-# ################################################################ #
-#     Variable list to start containers and get Docker Images      #
-# ################################################################ #
-
-docker_user_deploy: vagrant
-docker_policy_start: always
-

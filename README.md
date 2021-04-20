@@ -66,10 +66,11 @@ Once finished experimenting with the Redis cluster, you can remove it from your 
 # Deploying each cluster
 
 ## Steps for Redis cluster
-- From the terminal run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags mysql`
+- SSH into the ansiblem VM
+- From the terminal make sure you are in the /vagrant run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags mysql`
 
 ## Steps for RabbitMQ deploy
-- From the terminal run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags rabbitmq`
+- From the terminal make sure you are in the /vagrant folder and run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags rabbitmq`
 
 ## Steps for MySQL deploy
-- From the terminal run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags mysql`
+- From the terminal make sure you are in the /vagrant folder and run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags mysql`

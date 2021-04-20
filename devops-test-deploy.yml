@@ -16,6 +16,7 @@
 
 - name: MySQL cluster 
   hosts: mysqlcluster
+  become: yes
   roles:
     - mysql-docker-deploy
   tags: mysql  

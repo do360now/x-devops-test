@@ -12,11 +12,9 @@
 # Start containers 
 ##############################################
 
-- name: Start MySQL Master
+- name: Start MySQL Node1
   include_tasks: "nodes/node1.yml"
   
-- name: Start MySQL Slave
+- name: Start MySQL Node2
   include_tasks: "nodes/node2.yml"
-  
-  
-
+ 
