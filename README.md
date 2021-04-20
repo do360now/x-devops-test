@@ -2,7 +2,7 @@
 # Includes:
 - Redis cluster 
 - RabbitMQ cluster
-- MySQL
+- MySQL Cluster
 
 <img src="https://raw.githubusercontent.com/cgmon/magic/master/magic.png" alt="magic" width="150">
 
@@ -23,14 +23,10 @@
 
 # What is this about?
 
-> Redis Cluster: 
-Using Vagrant and Virtualbox a VM is built. Using Ansible, a six container redis cluster is brought up (3 masters and 3 slaves).  After the first playbook run, a Redis cluster is properly initialized with Redis data persistent on the host.  
+> Clusters: 
+Using Vagrant and Virtualbox a VM is built to use as host. Using Ansible, a cluster for each service is deployed. For Redis we deploy a  six container redis cluster, for RabbitMQ we use three containers, and for MySQL two containers are deployed.  
 
 This Redis Cluster provides a way to run a Redis installation where data is automatically sharded across multiple Redis nodes.
-
-# Installation steps Redis
-
-- These are the steps necesary create this Redis cluster
 
 ## System requirements Linux
 
@@ -40,24 +36,38 @@ This Redis Cluster provides a way to run a Redis installation where data is auto
 - `Powershell version => 5` console with `admin rights`
 - `Vagrant version => 2.2.15`
 - `Virtualbox version => 6.1.18`
+- `Git version => 2.24.0.windows.2`
 
-## Steps
+# Installation steps Redis
+- These are the steps necesary create this Redis cluster
 
+## Prerequisites steps for the test VM environment
+- For the purpose of this test, two VM will be deployed, a 
 - Open the Powershell console as admin <br>
 `WIN key + X` and select `Windows Powershell (Admin)`
-
-- Navigate to the root `x-devops-test` folder and execute `vagrant box add ubuntu/bionic64`
-- Boot the host VM Server: `vagrant up`
+- Create a new folder for this project.
+- Go into the new folder and run `git clone https://github.com/do360now/x-devops-test.git`
+- Navigate to the root of the project `x-devops-test` folder and execute `vagrant box add ubuntu/bionic64` to download the Virtual Box image we will use for this project.
+- Boot the host VM Servers: `vagrant up`
 - Connect to the Ansible master `vagrant ssh ansiblem`
 - Change to the vagrant directory,  `cd /vagrant` and start the Ansible Master setup script `./ansiblem-setup-script.sh`
 
-- Make sure you're in the same directory as the Vagrantfile and devops-test-deploy.yml, and enter `vagrant provision`
 
-You should see status messages for each of the tasks, and then a recap showing what Ansible did to configure the Redis cluster. Something  like the following:
+You should see status messages for each of the tasks, and then a recap showing what Ansible did to configure the Redis Nodes for the cluster. Something  like the following:
 
-PLAY RECAP **************************************************************************************
-default                                            : ok=3                changed
+PLAY RECAP *******************************************************************************************************
+rediscluster               : ok=48   changed=25   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0
 
+# Check cluster
+- Open a new Windows Powershell window and use the `vagrant ssh testvm` to connect to the test VM running the docker container nodes.
+- Do a `docker ps` to view the containers.
 
 # Cleaning Up
-Once finished experimenting with the Redis cluster, you can remove it from your system by running `vagrant destroy`.  If you want to rebuild the cluster again, run `vagrant up`, and then `vagrant provision`.
+Once finished experimenting with the Redis cluster, you can remove it from your system by running `vagrant destroy`.  If you want to rebuild the cluster again, run `vagrant up`, and then `vagrant ssh ansiblem` again.
+
+## Steps for RabbitMQ deploy
+- Log into the 
+- ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags rabbitmq
+
+## Steps for MySQL deploy
+- From the terminal run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags mysql`

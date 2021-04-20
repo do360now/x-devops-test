@@ -1,0 +1,37 @@
+###############################################
+# MASTER1 VARIABLES FOR THE REDIS CLUSTER
+###############################################
+node_port: 7003
+app_name: "redis_node3"
+container_name: "{{ app_name }}"
+docker_image_name: redis
+docker_image_version: "5"
+# docker_network_name: "{{ app_name }}_network"
+# docker_network_mode: "host"
+docker_container_name: "{{ app_name }}"
+# docker_command: "redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 --cluster-replicas 1"
+docker_container_mapped_port:
+  - 6379
+  - 16379
+
+# docker_container_map_directories:
+# - { dir_src: "{{ docker_host_shared_path }}", volume: "{{ docker_volume_name }}", dir_shared: "{{ docker_container_directory }}" }
+# - { dir_src: "{{ cluster-test }}" }
+# - { dir_src: "{{ cluster-test }}/7000" }
+# - { dir_src: "{{ cluster-test }}/7001" }
+# - { dir_src: "{{ cluster-test }}/7002" }
+# - { dir_src: "{{ cluster-test }}/7003" }
+# - { dir_src: "{{ cluster-test }}/7004" }
+# - { dir_src: "{{ cluster-test }}/7005" }
+
+# docker_host_shared_path: "{{ docker_shared_dir }}"
+
+# Path where the container data will be persited
+# docker_shared_dir: "/home/docker/vol" 
+
+# docker_volume_name: "{{ docker_container_name }}"
+
+# docker_container_directory: "/data "
+
+
+# /docker/host/dir:/data

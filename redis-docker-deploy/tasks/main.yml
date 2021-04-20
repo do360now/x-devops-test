@@ -12,23 +12,23 @@
 # Start containers 
 ##############################################
 
-- name: Start Redis Master1
-  include_tasks: "nodes/redisms1.yml"
+- name: Start Redis Node1
+  include_tasks: "nodes/node1.yml"
   
-- name: Start Redis Master2
-  include_tasks: "nodes/redisms2.yml"
+- name: Start Redis Node2
+  include_tasks: "nodes/node2.yml"
   
-- name: Start Redis Master3
-  include_tasks: "nodes/redisms3.yml"
+- name: Start Redis Node3
+  include_tasks: "nodes/node3.yml"
   
-- name: Start Redis Slave1
-  include_tasks: "nodes/rediss1.yml"
+- name: Start Redis Node4
+  include_tasks: "nodes/node4.yml"
   
-- name: Start Redis Slave2
-  include_tasks: "nodes/rediss2.yml"
+- name: Start Redis Node5
+  include_tasks: "nodes/node5.yml"
 
-- name: Start Redis Slave3
-  include_tasks: "nodes/rediss3.yml"
+- name: Start Redis Node6
+  include_tasks: "nodes/node6.yml"
 
 ##############################################
 # Start cluster

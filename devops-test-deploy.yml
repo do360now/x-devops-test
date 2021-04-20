@@ -1,21 +1,23 @@
 ---
 - name: DevOps Test Redis Cluster
-  hosts: redisms1
+  hosts: rediscluster
   serial: 1
   gather_facts: false
   become: yes
   roles:
     - redis-docker-deploy
+  tags: redis  
 
-# - name: RabbitMQ cluster
-#   hosts: rabbitmq-server
-  
-#   roles:
-#     - rabbitmq-server-deploy
+- name: RabbitMQ cluster
+  hosts: rabbitmqcluster
+  roles:
+    - rabbitmq-docker-deploy
+  tags: rabbitmq  
 
-# - name: MySQL cluster 
-#   hosts: mysql-server
-#   roles:
-#     - mysql-server-deploy
+- name: MySQL cluster 
+  hosts: mysqlcluster
+  roles:
+    - mysql-docker-deploy
+  tags: mysql  
     
  

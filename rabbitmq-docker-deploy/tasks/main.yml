@@ -1,0 +1,24 @@
+##############################################
+# Main task that executes this ansible role  
+##############################################
+
+- name: verify hosts is available
+  include_tasks: "00.ping_test.yml"
+  
+- name: Verify requiremnts is done 
+  include_tasks: "01.requirements.yml"
+  
+##############################################
+# Start containers 
+##############################################
+
+- name: Start Rabbit Node1
+  include_tasks: "nodes/node1.yml"
+  
+- name: Start Rabbit Node2
+  include_tasks: "nodes/node2.yml"
+  
+- name: Start Rabbit Node3
+  include_tasks: "nodes/node3.yml"
+  
+

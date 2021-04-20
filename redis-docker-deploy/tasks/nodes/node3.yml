@@ -1,0 +1,58 @@
+---
+
+- name: Stop all containers of the same name redis_node3
+  docker_container:
+    state: absent
+    name: "redis_node3"
+
+- name: Create a directory if it does not exist
+  file:
+    path: /home/vagrant/conf/7003
+    state: directory
+    mode: '0755'
+
+- name: Copy Redis config file
+  copy:
+    remote_src: no
+    src: "7003/redis.conf"
+    dest: "/home/vagrant/conf/7003/redis.conf"
+    owner: vagrant
+    group: vagrant
+    mode: '0644'
+    
+
+- name: Start the container redis_node3
+  docker_container:
+    state: started
+    name: "redis_node3"
+    image: "redis:5"
+    # network_mode: host
+    networks: 
+      - name: "redis_network"
+    volumes:
+      - /home/vagrant/conf/7003:/conf
+    command: "redis-server /conf/redis.conf"
+    container_default_behavior: no_defaults
+    #published_ports: "{{ docker_container_mapped_port | default(omit) }}"
+    
+
+###################################
+# Check install docker deployments 
+###################################
+
+# show container with restarting mode
+- name: Verify if containers is up redis_node3
+  shell: "docker ps -aq --filter name=redis_node3 --filter status=restarting --filter status=exited --latest | wc -l"
+  register: container_run_count
+
+# Check if docker deployment is OK
+- name: "Check if docker deployment is OK"
+  debug:
+    msg: "Container redis_node3 is OK"
+  when:  container_run_count.stdout == "0"  
+
+# Check if docker deployment is KO
+- name: Check if docker deployment is KO
+  fail: 
+    msg: "Container redis_node3 is KO"
+  when: container_run_count.stdout == "1"

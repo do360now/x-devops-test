@@ -1,0 +1,4 @@
+---
+
+- name: Check connectivity to target with a ping test
+  ping:

@@ -3,11 +3,6 @@
 # The declared variables here must not be modified #
 ####################################################
 
-
-
-
-
-  
-  
-  
-  
+files_to_copy:
+- { src: "7001/redis.conf", dest: "/home/vagrant/conf/7001/redis.conf"}
+- { src: "/vagrant/create_cluster.sh", dest: "/home/vagrant/conf/7001/create_cluster.sh" }

@@ -1,0 +1,16 @@
+---
+
+# - name: Install pip  (state=present is optional)
+#   apt:
+#     name: python3-pip
+#     state: present
+
+# - name: Install docker
+#   pip:
+#     name: docker
+
+- name: Checking the installation of the docker package
+  shell: "dpkg -l | grep docker.*"
+  register: package_docker
+  failed_when: package_docker.rc == 1
+
