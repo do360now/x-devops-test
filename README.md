@@ -11,14 +11,15 @@
 
 - [Test environmet configuration](#Test-environment-configuration)
 - [Steps](#Steps)
-- [Cleaning up](#CleaningUp)
+
 
 - [Installation steps RabbitMQ](#Installation-steps-RabbitMQ)
 - [Steps](#Steps)
-- [Cleaning up](#CleaningUp)
+
 
 - [Installation steps MySQL](#Installation-steps-MySQL)
 - [Steps](#Steps)
+
 - [Cleaning up](#CleaningUp)
 
 # What is this about?
