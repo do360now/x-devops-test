@@ -71,7 +71,7 @@ Once finished experimenting with the clusters, you can remove it from your syste
 - Open the Powershell console as admin <br>
 `WIN key + X` and select `Windows Powershell (Admin)`
 - SSH into the ansiblem VM with the command `vagrant ssh ansiblem`
-- From the terminal make sure you are in the /vagrant directory and run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags mysql`
+- From the terminal make sure you are in the /vagrant directory and run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags redis`
 
 ## Steps for RabbitMQ deploy
 - Open the Powershell console as admin <br>
