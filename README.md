@@ -4,12 +4,12 @@
 - RabbitMQ cluster
 - MySQL Cluster
 
-<img src="https://raw.githubusercontent.com/cgmon/magic/master/magic.png" alt="magic" width="150">
+<img src="https://github.com/do360now/x-devops-test/blob/master/magic.png" alt="magic" width="150">
 
 
 # Jump to content
 
-- [Installation steps Redis](#Installation-steps-Redis)
+- [Test environmet configuration](#Test-environment-configuration)
 - [Steps](#Steps)
 - [Cleaning up](#CleaningUp)
 
@@ -38,8 +38,6 @@ This Redis Cluster provides a way to run a Redis installation where data is auto
 - `Virtualbox version => 6.1.18`
 - `Git version => 2.24.0.windows.2`
 
-# Installation steps Redis
-- These are the steps necesary create this Redis cluster
 
 ## Prerequisites steps for the test VM environment
 - For the purpose of this test, two VM will be deployed, a 
@@ -65,9 +63,13 @@ rediscluster               : ok=48   changed=25   unreachable=0    failed=0    s
 # Cleaning Up
 Once finished experimenting with the Redis cluster, you can remove it from your system by running `vagrant destroy`.  If you want to rebuild the cluster again, run `vagrant up`, and then `vagrant ssh ansiblem` again.
 
+# Deploying each cluster
+
+## Steps for Redis cluster
+- From the terminal run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags mysql`
+
 ## Steps for RabbitMQ deploy
-- Log into the 
-- ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags rabbitmq
+- From the terminal run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags rabbitmq`
 
 ## Steps for MySQL deploy
 - From the terminal run `ansible-playbook devops-test-deploy.yml -i ./devops-test-inventory/hosts -vv --tags mysql`
